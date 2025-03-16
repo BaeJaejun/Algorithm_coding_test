@@ -9,11 +9,10 @@ for _ in range(N):
     W.append(list(map(int, input().split())))
 
 N_list = [i for i in range(N)]
-per_N = permutations(N_list) # 이동 가능한 모든 수열
 
-cost_list = []
+min_cost = float('inf')
 
-for x in per_N: #순열 조합 하나에서 이동하는 경우 하나 뽑기
+for x in permutations(N_list): #순열 조합 하나에서 이동하는 경우 하나 뽑기
     cost = 0  
     visited = [False for _ in range(N)] # 이동 여부를 판별 N개 마을 이 있으면 N번 움직임
     
@@ -25,8 +24,8 @@ for x in per_N: #순열 조합 하나에서 이동하는 경우 하나 뽑기
             visited[x[y]] = True
             cost += c
                 
-    if False not in visited:
-        cost_list.append(cost)
+    if False not in visited and min_cost > cost:
+        min_cost = cost
     
     
-print(min(cost_list))
+print(min_cost)
