@@ -15,6 +15,8 @@ min_cost = float('inf')
 for x in permutations(N_list): #순열 조합 하나에서 이동하는 경우 하나 뽑기
     cost = 0  
     check = 0
+    if x[0] != 0:
+        continue  # 출발지 고정 // 순환이라 출발지를 고정해도 상관 없음
     for y in range(N):
         c = W[ x[y%(N)] ][ x[(y+1)%N] ]
         if  c == 0:  
