@@ -1,30 +1,33 @@
 import sys
+
 input = sys.stdin.readline
 
-N, C = map(int,input().split())
-houses = []
-for i in range(N):
-    houses.append(int(input().strip()))
-houses.sort()
+N,C = map(int,input().split())
+
+homes = []
+for _ in range(N):
+    homes.append(int(input().strip()))
+    
+homes.sort()
 
 min_dist = 1
-max_dist = houses[-1] - houses[0]
-result = 0
+max_dist = homes[-1] - homes[0]
+
+def check_C(mid):
+    cnt = 1
+    last_installed = homes[0]
+    for x in homes[1:]:
+        if x -last_installed >= mid:
+            last_installed = x
+            cnt += 1
+    return cnt
 
 while min_dist <= max_dist:
-    try_dist = (min_dist + max_dist) // 2
-    last_installed = houses[0]
-    count = 1
-
-    for i in range(1, N):
-        if houses[i] - last_installed >= try_dist:
-            count += 1
-            last_installed = houses[i]
-
-    if count >= C:
-        result = try_dist
-        min_dist = try_dist + 1
+    interval = (min_dist + max_dist) // 2
+    
+    if check_C(interval) >= C:
+        min_dist =  interval +1
     else:
-        max_dist = try_dist - 1
-
-print(result)
+        max_dist = interval -1
+        
+print(max_dist)
