@@ -3,24 +3,22 @@ input = sys.stdin.readline
 
 N, M = map(int,input().split())
 
-namu = list(map(int,input().split()))
+trees = list(map(int,input().split()))
+
+ground = 0
+top = max(trees)
+
+def check_sum(mid):
+    total = sum((tree-mid) for tree in trees if tree > mid)
+    return total
+
+while ground <=  top:
+   
+    mid = (ground + top) // 2
     
-    
-def binary(start,end):
-    if start > end:
-        return end
-        
-    mid = (start + end) // 2
-    
-    total = sum((tree-mid) for tree in namu if tree > mid)
-    
-    if total >= M :
-        return binary(mid + 1, end)
+    if check_sum(mid) >= M:
+        ground = mid +1
     else:
-        return binary(start,mid - 1)
+        top = mid -1
 
-max_H = 0
-namu.sort()
-
-print(binary(0,max(namu)))
-
+print(top)
