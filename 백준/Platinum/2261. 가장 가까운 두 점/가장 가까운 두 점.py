@@ -1,5 +1,5 @@
 import sys
-
+import math
 input = sys.stdin.readline
 
 N = int(input().strip())
@@ -16,7 +16,7 @@ right = N-1
 
 def merge(left,right,l_dis,r_dis):
     #합쳤을때의 최소 거리   
-    d = min(l_dis,r_dis)
+    d = math.sqrt(min(l_dis,r_dis))
     arr = left + right
     midx = arr[len(arr)//2][0] # 중간 x값
     
@@ -31,7 +31,7 @@ def merge(left,right,l_dis,r_dis):
     
     for i in range(len(arry)):
         for j in range(i+1,len(arry)):
-            if (arry[i][1]-arry[j][1])**2 >= d:
+            if (arry[i][1]-arry[j][1])**2 >= d**2:
                 break
             m_dis = min(m_dis,(arry[i][0]-arry[j][0])**2 + (arry[i][1]-arry[j][1])**2)
       
