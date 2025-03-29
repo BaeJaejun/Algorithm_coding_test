@@ -23,7 +23,7 @@ def per(depth, n, current):
         result.append(current[:])
         return
     
-    prev = None
+    prev = None #이전걸 확인해서 중복제거
     for i in range(n):
         if not visited[i] and op[i] != prev:
             visited[i] = True
@@ -31,7 +31,7 @@ def per(depth, n, current):
             visited[i] = False
             prev = op[i]
 
-op.sort()
+op.sort() #이전게 같은 수라면 중복 제거를 위해 정렬해야함
 per(0,len(op),[])
 
 for i in range(len(result)):
