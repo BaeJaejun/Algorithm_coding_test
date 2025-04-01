@@ -77,7 +77,7 @@ while q:
         if idx not in basic:
             for j,k in enumerate(need[idx]):
                 if j != 0:
-                    need[i[0]][j] += need[i[0]][idx] * k
+                    need[i[0]][j] += i[1] * k
         indeg[i[0]] -= 1
         if indeg[i[0]] == 0:
             q.append(i[0])
