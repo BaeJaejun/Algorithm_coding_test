@@ -12,7 +12,7 @@ for i in range(N):
 
 visited = [[False for _ in range(M+1)]for _ in range(N+1)]
 
-    #상하좌우 
+
 dy = [0,0,-1,1]
 dx = [-1,1,0,0]
 
@@ -21,7 +21,7 @@ def dfs(startx,starty,prev):
     visited[startx][starty] = True
     
     if graph[startx][starty] == "-":
-        for i in range(2,4):
+        for i in range(2,4): # -일 땐 좌우로만만
             nx = startx + dx[i]
             ny = starty + dy[i]
             if 0< nx <= N and 0< ny <= M and not visited[nx][ny] and graph[nx][ny] == prev:
@@ -30,7 +30,7 @@ def dfs(startx,starty,prev):
 
     
     elif graph[startx][starty] == "|":
-        for i in range(0,2):
+        for i in range(0,2): # | 일땐 상하로만
             nx = startx + dx[i]
             ny = starty + dy[i]
             if 0< nx <= N and 0< ny <= M and not visited[nx][ny] and graph[nx][ny] == prev:
